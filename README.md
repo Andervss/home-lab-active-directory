@@ -6,7 +6,7 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 ## Lab Setup
 - Allocated 8GB RAM, 2 CPUs, 50GB disk
 - Renamed server to `Server2022` (instead of default hostname)
-- Adjusted performance settings (tested “Best Performance” but reverted to default for better readability)
+- Adjusted advanced performance settings (tested “Best Performance” but reverted to default for better readability)
 
 ## Active Directory Configuration
 - Installed Active Directory Domain Services (AD DS) via Server Manager
@@ -19,4 +19,4 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - NetBIOS Name: `ANDERVSS`
 
 ## Notes
-- Initial setup and configuration completed successfully
+- Initial setup and configuration completed smoothly and successfully
