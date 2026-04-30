@@ -1,16 +1,22 @@
 # Active Directory Home Lab
 
 ## Overview
-Built a virtual lab using VirtualBox and Windows Server 2022.
+Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic Active Directory environment.
 
-## Setting up Active Directory
-- In setup allocate 8GB Memory, 2 CPUs, 50GB Disk size.
-- Rename computer to Server2022 (instead of WIN-2701028** etc.)
-- Adjust in advanced settings to Best Performance ---> actually reverted back to default as text looked a bit thin
-- In Server Manager install Active Directory Domain Services and promote to Domain Server 
-- (applying settings takes long time ~10min )
-- After restart go tools and AD computer and users in server manager
+## Lab Setup
+- Allocated 8GB RAM, 2 CPUs, 50GB disk
+- Renamed server to `Server2022` (instead of default hostname)
+- Adjusted performance settings (tested “Best Performance” but reverted to default for better readability)
 
-## Setting up notes
-- Domain name: andervss.com
-- BIOS: ANDERVSS
+## Active Directory Configuration
+- Installed Active Directory Domain Services (AD DS) via Server Manager
+- Promoted server to Domain Controller
+- Noted installation and promotion process (~10 minutes)
+- Accessed Active Directory Users and Computers via Server Manager tools
+
+## Domain Details
+- Domain Name: `andervss.com`
+- NetBIOS Name: `ANDERVSS`
+
+## Notes
+- Initial setup and configuration completed successfully
