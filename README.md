@@ -20,3 +20,22 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 
 ## Notes
 - Initial setup and configuration completed smoothly and successfully
+
+
+
+## Using AD Users and Computers
+- Searched entire directory when users were not immediately visible
+- Enabled “Advanced Features” in View tab to locate user object paths
+- Practiced searching for users (e.g. Guest account)
+- Enabled Recycle Bin in Active Directory Administrative Center (creates “Deleted Objects” container)
+- Created a “helpdesk” account by copying the Administrator template (faster for similar roles)
+
+## Basic CMD Commands
+- `ipconfig` → Shows basic IP configuration
+- `ipconfig /all` → Displays detailed network configuration (IP, DNS, DHCP, MAC)
+- `net use` → Shows mapped network drives / shared resources
+- `net user <username> /domain` → Displays domain user account details
+
+## Command Notes
+- DHCP Enabled = Yes → Dynamic IP address  
+- DHCP Enabled = No → Static IP address  
