@@ -41,7 +41,15 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - `net use` → Shows mapped network drives / shared resources
 - `net user <username> /domain` → Displays domain user account details
 - `ping <ip>` → Tests connectivity to another device on the network
+- `ping <ip> -t` → Continuously pings a device to monitor connectivity (`Ctrl + C` to stop)
 
+## Further CMD Commands / Group Policy
+- `gpresult` → Displays Resultant Set of Policy (RSOP) information
+- `gpresult /r` → Displays applied user and computer policies
+- `gpresult /r > c:\result.txt` → Exports policy results to a text file
+- `gpresult /h gpresult.html` → Generates HTML Group Policy report
+- `gpupdate` → Refreshes and reapplies Group Policy settings
+  
 ## Command Notes
 - DHCP Enabled = Yes → Dynamic IP address  
 - DHCP Enabled = No → Static IP address  
@@ -87,3 +95,6 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - Configured static IP: `10.1.10.4`
 - Joined domain `andervss.com`
 - Successfully logged in using `helpdesk` account
+- Tested account lockout using user account `patty`
+- Practiced unlocking accounts and resetting passwords through Active Directory
+- Removed `Desktop2` from the domain and successfully rejoined it
