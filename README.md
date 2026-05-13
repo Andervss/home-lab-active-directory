@@ -38,6 +38,7 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 ## Basic CMD Commands
 - `ipconfig` → Shows basic IP configuration
 - `ipconfig /all` → Displays detailed network configuration (IP, DNS, DHCP, MAC)
+- `ipconfig /flushdns` → Clears cached DNS records
 - `net use` → Shows mapped network drives / shared resources
 - `net user <username> /domain` → Displays domain user account details
 - `ping <ip>` → Tests connectivity to another device on the network
