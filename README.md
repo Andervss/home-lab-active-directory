@@ -125,3 +125,41 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
     - `\\SERVER2022\Personal\%username%`
 - Tested adding/removing additional user `test`
 - Practiced modifying user access and permissions
+
+## Remote Desktop and Remote Administration
+
+### Remote Desktop Testing
+- Enabled remote connections to `Desktop2`
+- Tested Remote Desktop connection from `Desktop1`
+- Verified functionality by creating and moving folders on user `patty` desktop remotely
+
+### DNS Troubleshooting
+- Used `ipconfig /flushdns` to clear cached DNS records
+
+### Remote Registry Access
+- Attempted remote connection to `Desktop2` using Registry Editor
+- Encountered error relating to Remote Administration / Remote Registry service
+- On `Desktop2`, enabled `RemoteRegistry` service:
+  - Set Startup Type to `Automatic`
+  - Started service successfully
+- Successfully connected to `Desktop2` through Registry Editor after enabling service
+
+### Administrative Shares and File Access
+- Accessed hidden administrative share:
+  - `\\Desktop2\c$`
+- Tested remote file access by creating folders on user `patty` desktop
+- Explored accessible shared folders and permissions
+
+### Windows Remote Assistance
+- Located Remote Assistance using `msra` / `msra.exe`
+- Attempted remote assistance connection to `Desktop2`
+- Encountered permissions issue on `patty` when adding `helpdesk` to Remote Desktop Users group
+- Resolved issue by logging into `helpdesk` account directly and re-adding permissions successfully
+
+### Remote Assistance Session Testing
+- On `Desktop2`, created Remote Assistance invitation file
+- Accessed invitation from `Desktop1` using:
+  - `\\Desktop2\c$`
+- Connected successfully using invitation password
+- Tested chat functionality and remote control access
+- Verified remote control by interacting with desktop and editing text remotely
