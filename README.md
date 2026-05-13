@@ -98,3 +98,30 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - Tested account lockout using user account `patty`
 - Practiced unlocking accounts and resetting passwords through Active Directory
 - Removed `Desktop2` from the domain and successfully rejoined it
+
+## Shared Folders and Security Groups
+- Created shared folders `HR` and `Personal` through Server Manager
+- Configured shared network paths:
+  - `\\SERVER2022\HR`
+  - `\\SERVER2022\Personal`
+- Created security group `HR`
+- Added shared folder network paths to group descriptions for easier reference
+- Added user `patty` to relevant security groups
+
+## NTFS Permissions and Access Control
+- Disabled inheritance on shared folders to configure custom permissions
+- Removed default users/groups from permissions
+- Added `helpdesk` account and assigned Modify permissions
+- Configured `HR` and `Personal` folder permissions with Read/Write access
+
+## Desktop2 Share Access Testing
+- Logged into `Desktop2` using user `patty`
+- Connected to shared folders using:
+  - `\\SERVER2022\HR`
+- Created shortcut and pinned shared folder to Quick Access
+- Mapped network drives:
+  - `Z:` drive → HR share
+  - `P:` drive → Personal share using:
+    - `\\SERVER2022\Personal\%username%`
+- Tested adding/removing additional user `test`
+- Practiced modifying user access and permissions
