@@ -43,13 +43,15 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - `net user <username> /domain` → Displays domain user account details
 - `ping <ip>` → Tests connectivity to another device on the network
 - `ping <ip> -t` → Continuously pings a device to monitor connectivity (`Ctrl + C` to stop)
+- `taskmgr`
 
 ## Further CMD Commands / Group Policy
 - `gpresult` → Displays Resultant Set of Policy (RSOP) information
 - `gpresult /r` → Displays applied user and computer policies
+- `gpresult /?` → Displays help and available command options
 - `gpresult /r > c:\result.txt` → Exports policy results to a text file
 - `gpresult /h gpresult.html` → Generates HTML Group Policy report
-- `gpupdate` → Refreshes and reapplies Group Policy settings
+- `gpupdate` or `gpupdate /force` → Refreshes and reapplies Group Policy settings
   
 ## Command Notes
 - DHCP Enabled = Yes → Dynamic IP address  
@@ -164,3 +166,46 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - Connected successfully using invitation password
 - Tested chat functionality and remote control access
 - Verified remote control by interacting with desktop and editing text remotely
+
+## Group Policy Management (GPO)
+
+### Creating and Applying Group Policy
+- In Group Policy Management on `Server2022`, created a new Group Policy Object (GPO) called `Task Manager`
+- Applied policy to user `patty`
+- Configured policies under:
+  - User Configuration
+  - Ctrl + Alt + Delete Options
+- Enabled:
+  - Remove Change Password
+  - Remove Task Manager
+- Linked and enforced GPO within the `HR` organisational unit (OU)
+
+### Testing Group Policy on Desktop2
+- Logged into `Desktop2` using user `patty`
+- Forced Group Policy update using:
+  - `gpupdate /force`
+- Verified policy application:
+  - `taskmgr` failed to open as expected
+- Confirmed Task Manager still worked when Command Prompt was launched as Administrator
+
+### Additional Group Policy Testing
+- Created and tested additional GPO to remove Recycle Bin icon from desktop
+- Noted that user sign-out/sign-in was required before policy fully applied
+- Verified Recycle Bin could still be accessed manually using:
+  - `shell:RecycleBinFolder`
+
+### Troubleshooting Group Policy Results Wizard
+- Attempted to run Group Policy Results Wizard for `Desktop2`
+- Encountered RPC Server error
+- Verified network connectivity using:
+  - `ping 10.1.10.4`
+- Checked required services on `Desktop2`:
+  - Remote Procedure Call (RPC)
+  - RPC Endpoint Mapper
+- Confirmed services were running and set to Automatic
+- Resolved issue by temporarily disabling Private Firewall on `Desktop2` using `helpdesk` admin account
+
+### RSOP / Group Policy Verification
+- Used RSOP (Resultant Set of Policy) logging through Active Directory user tools
+- Verified applied policies and confirmed Task Manager restrictions
+
