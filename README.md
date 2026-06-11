@@ -209,3 +209,36 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - Used RSOP (Resultant Set of Policy) logging through Active Directory user tools
 - Verified applied policies and confirmed Task Manager restrictions
 
+## PDQ Deploy
+
+### Environment Preparation
+- Installed VirtualBox Guest Additions and restarted virtual machines
+- Created shared folder `andervss_lab` and enabled Auto-mount
+- Downloaded PDQ Deploy (Free Edition) and stored installer in shared folder
+- Changed network adapter to Bridged Adapter
+- Reverted IP and DNS settings to obtain addresses automatically (DHCP)
+- Verified internet connectivity using:
+  - `ping 8.8.8.8`
+- Confirmed web browser access
+
+### Installing and Testing PDQ Deploy
+- Installed PDQ Deploy (Free Edition) on `Server2022`
+- Created deployment package using PDFsam Basic
+- Performed one-time deployment targeting `Server2022`
+- Verified successful deployment by confirming PDFsam was installed and accessible
+
+### PDQ Inventory
+- Downloaded PDQ Inventory and stored installer in shared folder `andervss_lab`
+- Installed PDQ Inventory on `Server2022`
+- Added `Desktop2` to inventory and verified connectivity
+- Accessed administrative share:
+  - `\\Desktop2\c$`
+- Tested remote file management by creating and moving files to user desktop locations
+- Tested remote reboot functionality on `Desktop2`
+- Verified Remote Desktop connectivity
+- Generated PDF report of installed applications on `Desktop2`
+
+### PDQ Deploy Integration
+- Opened PDQ Deploy through PDQ inventory and targeted `Desktop2`
+- Successfully deployed PDFsam Basic remotely
+- Verified software installation following deployment
