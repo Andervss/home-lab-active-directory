@@ -1,7 +1,7 @@
 # Active Directory Home Lab
 
 ## Overview
-Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic Active Directory environment.
+Built a virtual Windows Active Directory lab using VirtualBox, Windows Server 2022, and Windows 10 clients. The environment was used to practise user and group administration, Group Policy management, shared folders and permissions, remote administration, troubleshooting, software deployment with PDQ Deploy, and asset management with PDQ Inventory.
 
 ## Lab Setup
 - Allocated 8GB RAM, 2 CPUs, 50GB disk
@@ -93,13 +93,12 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
   - DHCP Server Tools
 
 ## Desktop2 Windows 10 Pro Lab
-- Created second client VM with similar configuration to Desktop1
-- Renamed machine to `Desktop2`
+- Created second Windows 10 client VM (`Desktop2`)
 - Configured static IP: `10.1.10.4`
 - Joined domain `andervss.com`
 - Successfully logged in using `helpdesk` account
-- Tested account lockout using user account `patty`
-- Practiced unlocking accounts and resetting passwords through Active Directory
+- Tested account lockout using user `patty`
+- Practised unlocking accounts and resetting passwords through Active Directory
 - Removed `Desktop2` from the domain and successfully rejoined it
 
 ## Shared Folders and Security Groups
@@ -108,7 +107,7 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
   - `\\SERVER2022\HR`
   - `\\SERVER2022\Personal`
 - Created security group `HR`
-- Added shared folder network paths to group descriptions for easier reference
+- Documented shared folder network paths within group descriptions for easier administration
 - Added user `patty` to relevant security groups
 
 ## NTFS Permissions and Access Control
@@ -135,9 +134,6 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 - Enabled remote connections to `Desktop2`
 - Tested Remote Desktop connection from `Desktop1`
 - Verified functionality by creating and moving folders on user `patty` desktop remotely
-
-### DNS Troubleshooting
-- Used `ipconfig /flushdns` to clear cached DNS records
 
 ### Remote Registry Access
 - Attempted remote connection to `Desktop2` using Registry Editor
@@ -203,7 +199,8 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
   - Remote Procedure Call (RPC)
   - RPC Endpoint Mapper
 - Confirmed services were running and set to Automatic
-- Resolved issue by temporarily disabling Private Firewall on `Desktop2` using `helpdesk` admin account
+- Resolved issue by temporarily disabling Private Firewall on `Desktop2` to identify the cause
+- Re-enabled firewall after testing
 
 ### RSOP / Group Policy Verification
 - Used RSOP (Resultant Set of Policy) logging through Active Directory user tools
@@ -230,7 +227,7 @@ Built a virtual lab using VirtualBox and Windows Server 2022 to simulate a basic
 ### PDQ Inventory
 - Downloaded PDQ Inventory and stored installer in shared folder `andervss_lab`
 - Installed PDQ Inventory on `Server2022`
-- Added `Desktop2` to inventory and verified connectivity
+- Added `Desktop2` to inventory and verified successful communication
 - Accessed administrative share:
   - `\\Desktop2\c$`
 - Tested remote file management by creating and moving files to user desktop locations
