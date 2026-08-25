@@ -1,24 +1,33 @@
 # Active Directory Home Lab
 
 ## Overview
-Built a virtual Windows Active Directory lab using VirtualBox, Windows Server 2022, and Windows 10 clients. The environment was used to practise user and group administration, Group Policy management, shared folders and permissions, remote administration, troubleshooting, software deployment with PDQ Deploy, and asset management with PDQ Inventory.
+Built a virtual Windows Active Directory lab using VirtualBox, Windows Server 2022 and Windows 10 clients.
 
-## Lab Setup
-- Allocated 8GB RAM, 2 CPUs, 50GB disk
-- Renamed server to `Server2022` (instead of default hostname)
-- Adjusted advanced performance settings (tested “Best Performance” but reverted to default for better readability)
+The lab is used to practise:
+- Active Directory administration
+- User and group management
+- Group Policy
+- Shared folders and permissions
+- Windows networking and troubleshooting
+- Remote administration
+- Software deployment and inventory management
 
-## Active Directory Configuration
-- Installed Active Directory Domain Services (AD DS) via Server Manager
-- Promoted server to Domain Controller
-- Installation and promotion process took ~10 minutes
-- Accessed Active Directory Users and Computers via Server Manager tools
+## Lab Environment
+- **Server:** Windows Server 2022
+- **Clients:** Windows 10 Pro
+- **Virtualisation:** VirtualBox
+- **Domain:** `andervss.com`
+- **NetBIOS:** `ANDERVSS`
 
-## Domain Details
-- Domain Name: `andervss.com`
-- NetBIOS Name: `ANDERVSS`
+### Server2022
+- 8GB RAM
+- 2 CPUs
+- 50GB storage
+- Renamed from the default hostname to `Server2022`
+- Installed Active Directory Domain Services (AD DS)
+- Promoted to Domain Controller
 
-## Changing Static IP on Server 2022 Lab
+## Server Networking - Changing Static IP on Server 2022 Lab
 - Configured static IP to simplify lab environment and avoid DHCP changes
 - Control Panel → Network and Sharing Center → Change adapter settings → IPv4 Properties
 - IP address: `10.1.10.2`
@@ -45,197 +54,199 @@ Built a virtual Windows Active Directory lab using VirtualBox, Windows Server 20
 - `ping <ip> -t` → Continuously pings a device to monitor connectivity (`Ctrl + C` to stop)
 - `taskmgr`
 
-## Further CMD Commands / Group Policy
-- `gpresult` → Displays Resultant Set of Policy (RSOP) information
+## Group Policy & Useful Commands
+
+### Group Policy Commands
 - `gpresult /r` → Displays applied user and computer policies
-- `gpresult /?` → Displays help and available command options
-- `gpresult /r > c:\result.txt` → Exports policy results to a text file
-- `gpresult /h gpresult.html` → Generates HTML Group Policy report
-- `gpupdate` or `gpupdate /force` → Refreshes and reapplies Group Policy settings
-  
-## Command Notes
-- DHCP Enabled = Yes → Dynamic IP address  
-- DHCP Enabled = No → Static IP address  
+- `gpresult /h gpresult.html` → Generates an HTML report of applied Group Policy
+- `gpupdate /force` → Refreshes and reapplies Group Policy settings
+
+### Network Notes
+- `DHCP Enabled = Yes` → Dynamic IP address
+- `DHCP Enabled = No` → Static IP address
 
 ## Desktop1 Windows 10 Pro Lab
-- Originally downloaded Windows 11 ISO
-- Encountered black screen on first boot and attempted troubleshooting
-- Switched to Windows 10 ISO due to compatibility issues with VirtualBox
-- Allocated 8GB RAM, 2 CPUs, 50GB disk
-- Enabled built-in Administrator account
-- Removed standard user account for simplified lab setup
-- Renamed computer to `Desktop1`
-- Configured static IP:
-  - IP address: `10.1.10.3` (must be different from server)
+- Created a Windows 10 Pro client VM (`Desktop1`) for testing within the domain.
+- Initially attempted to use a Windows 11 ISO but encountered a black screen during the first boot.
+- Switched to Windows 10 after troubleshooting compatibility issues with VirtualBox.
+- Allocated 8GB RAM, 2 CPUs and 50GB storage.
+- Enabled the built-in Administrator account.
+- Removed the standard user account to simplify the lab setup.
+- Renamed the computer to `Desktop1`.
+- Configured a static IP:
+  - IP address: `10.1.10.3`
   - Subnet mask: `255.0.0.0`
   - Default gateway: `10.1.10.1`
   - Preferred DNS server: `10.1.10.2`
   - Alternate DNS server: `10.1.10.1`
-- Changed network adapter from NAT to Host-only Adapter in VirtualBox settings
-- Joined domain `andervss.com` using domain administrator credentials
-- Successfully logged into the domain using the `helpdesk` account
-- Practiced creating an organisational unit, creating a user account, and moving accounts into folders
-- Explored Group Policy Management, including password policy, account lockout duration, account lockout threshold, and max password age
+- Changed the VirtualBox network adapter from NAT to Host-only Adapter.
+- Joined the `andervss.com` domain using domain administrator credentials.
+- Successfully logged into the domain using the `helpdesk` account.
+- Practised creating organisational units, user accounts and moving accounts between OUs.
+- Explored Group Policy Management, including:
+  - Password policy
+  - Account lockout duration
+  - Account lockout threshold
+  - Maximum password age
 
-## Notes
-- In most help desk roles, direct access to servers (e.g. Server Manager) is restricted
-- Administration is typically performed using tools like RSAT from a client machine
-
-## Optional RSAT Features
-- Remote Server Administration Tools (RSAT) allow administrators to manage Windows Server roles remotely from a Windows 10/11 machine
-- Common RSAT tools added:
+## Remote Server Administration Tools (RSAT)
+- Used RSAT to explore managing Windows Server from a Windows client.
+- RSAT allows administrators to manage Windows Server roles and services remotely without directly accessing the server.
+- Tools explored:
   - Server Manager
-  - Remote Desktop Services Tools
   - Active Directory Domain Services Tools
-  - Active Directory Certificate Services Tools
   - Group Policy Management Tools
   - DNS Server Tools
   - DHCP Server Tools
 
 ## Desktop2 Windows 10 Pro Lab
-- Created second Windows 10 client VM (`Desktop2`)
-- Configured static IP: `10.1.10.4`
-- Joined domain `andervss.com`
-- Successfully logged in using `helpdesk` account
-- Tested account lockout using user `patty`
-- Practised unlocking accounts and resetting passwords through Active Directory
-- Removed `Desktop2` from the domain and successfully rejoined it
+- Created a second Windows 10 Pro client VM (`Desktop2`).
+- Configured a static IP:
+  - IP address: `10.1.10.4`
+- Joined the `andervss.com` domain.
+- Successfully logged into the domain using the `helpdesk` account.
+- Tested account lockout using user `patty`.
+- Practised unlocking accounts and resetting passwords through Active Directory.
+- Removed `Desktop2` from the domain and successfully rejoined it.
 
-## Shared Folders and Security Groups
-- Created shared folders `HR` and `Personal` through Server Manager
+## Shared Folders, Security Groups & Permissions
+- Created shared folders `HR` and `Personal` through Server Manager.
 - Configured shared network paths:
   - `\\SERVER2022\HR`
   - `\\SERVER2022\Personal`
-- Created security group `HR`
-- Documented shared folder network paths within group descriptions for easier administration
-- Added user `patty` to relevant security groups
+- Created a security group called `HR`.
+- Added user `patty` to the relevant security groups.
+- Documented shared folder paths within group descriptions for easier administration.
+- Disabled inheritance on shared folders to configure custom permissions.
+- Removed default users/groups from the folder permissions.
+- Added the `helpdesk` account and assigned Modify permissions.
+- Configured `HR` and `Personal` folder permissions with Read/Write access.
 
-## NTFS Permissions and Access Control
-- Disabled inheritance on shared folders to configure custom permissions
-- Removed default users/groups from permissions
-- Added `helpdesk` account and assigned Modify permissions
-- Configured `HR` and `Personal` folder permissions with Read/Write access
-
-## Desktop2 Share Access Testing
-- Logged into `Desktop2` using user `patty`
-- Connected to shared folders using:
+### Share Access Testing
+- Logged into `Desktop2` using user `patty`.
+- Connected to the `HR` shared folder using:
   - `\\SERVER2022\HR`
-- Created shortcut and pinned shared folder to Quick Access
+- Created a shortcut and pinned the shared folder to Quick Access.
 - Mapped network drives:
-  - `Z:` drive → HR share
-  - `P:` drive → Personal share using:
+  - `Z:` drive → `HR` share
+  - `P:` drive → `Personal` share using:
     - `\\SERVER2022\Personal\%username%`
-- Tested adding/removing additional user `test`
-- Practiced modifying user access and permissions
+- Tested adding and removing an additional user (`test`) from the relevant permissions/groups.
+- Practised modifying user access and folder permissions.
 
-## Remote Desktop and Remote Administration
+## Remote Desktop & Remote Administration
 
-### Remote Desktop Testing
-- Enabled remote connections to `Desktop2`
-- Tested Remote Desktop connection from `Desktop1`
-- Verified functionality by creating and moving folders on user `patty` desktop remotely
+### Remote Desktop
+- Enabled Remote Desktop connections on `Desktop2`.
+- Tested a Remote Desktop connection from `Desktop1`.
+- Verified remote access by creating and moving folders on user `patty`'s desktop.
 
-### Remote Registry Access
-- Attempted remote connection to `Desktop2` using Registry Editor
-- Encountered error relating to Remote Administration / Remote Registry service
-- On `Desktop2`, enabled `RemoteRegistry` service:
-  - Set Startup Type to `Automatic`
-  - Started service successfully
-- Successfully connected to `Desktop2` through Registry Editor after enabling service
+### Remote Registry
+- Attempted to connect to `Desktop2` remotely using Registry Editor.
+- Encountered an error related to the Remote Registry service.
+- On `Desktop2`:
+  - Set the `RemoteRegistry` service Startup Type to `Automatic`.
+  - Started the service successfully.
+- Successfully connected to `Desktop2` through Registry Editor after enabling the service.
 
-### Administrative Shares and File Access
-- Accessed hidden administrative share:
+### Administrative Shares & Remote File Access
+- Accessed the hidden administrative share:
   - `\\Desktop2\c$`
-- Tested remote file access by creating folders on user `patty` desktop
-- Explored accessible shared folders and permissions
+- Tested remote file access by creating folders on user `patty`'s desktop.
+- Explored available shared folders and permissions.
 
 ### Windows Remote Assistance
-- Located Remote Assistance using `msra` / `msra.exe`
-- Attempted remote assistance connection to `Desktop2`
-- Encountered permissions issue on `patty` when adding `helpdesk` to Remote Desktop Users group
-- Resolved issue by logging into `helpdesk` account directly and re-adding permissions successfully
+- Located Windows Remote Assistance using `msra` / `msra.exe`.
+- Attempted to establish a Remote Assistance connection to `Desktop2`.
+- Encountered a permissions issue when adding `helpdesk` to the Remote Desktop Users group for user `patty`.
+- Resolved the issue by logging into the `helpdesk` account directly and re-adding the required permissions.
 
-### Remote Assistance Session Testing
-- On `Desktop2`, created Remote Assistance invitation file
-- Accessed invitation from `Desktop1` using:
+### Remote Assistance Session
+- Created a Remote Assistance invitation file on `Desktop2`.
+- Accessed the invitation from `Desktop1` using:
   - `\\Desktop2\c$`
-- Connected successfully using invitation password
-- Tested chat functionality and remote control access
-- Verified remote control by interacting with desktop and editing text remotely
+- Connected successfully using the invitation password.
+- Tested chat functionality and remote control.
+- Verified remote control by interacting with `Desktop2` and editing text remotely.
 
 ## Group Policy Management (GPO)
 
 ### Creating and Applying Group Policy
-- In Group Policy Management on `Server2022`, created a new Group Policy Object (GPO) called `Task Manager`
-- Applied policy to user `patty`
-- Configured policies under:
-  - User Configuration
-  - Ctrl + Alt + Delete Options
-- Enabled:
+- Created a Group Policy Object (GPO) called `Task Manager` in Group Policy Management on `Server2022`.
+- Linked the GPO to the `HR` organisational unit (OU).
+- Configured the following policies under User Configuration → Ctrl + Alt + Delete Options:
   - Remove Change Password
   - Remove Task Manager
-- Linked and enforced GPO within the `HR` organisational unit (OU)
+- Applied the policy to user `patty`.
 
 ### Testing Group Policy on Desktop2
-- Logged into `Desktop2` using user `patty`
-- Forced Group Policy update using:
+- Logged into `Desktop2` as `patty`.
+- Forced a Group Policy refresh using:
   - `gpupdate /force`
-- Verified policy application:
-  - `taskmgr` failed to open as expected
-- Confirmed Task Manager still worked when Command Prompt was launched as Administrator
+- Verified the policy by confirming that `taskmgr` could not be opened.
+- Tested the behaviour with Command Prompt launched as Administrator and confirmed Task Manager could still be accessed.
 
-### Additional Group Policy Testing
-- Created and tested additional GPO to remove Recycle Bin icon from desktop
-- Noted that user sign-out/sign-in was required before policy fully applied
-- Verified Recycle Bin could still be accessed manually using:
+### Additional GPO Testing
+- Created and tested a second GPO to remove the Recycle Bin icon from the desktop.
+- Found that signing out and back in was required before the policy fully applied.
+- Verified the Recycle Bin could still be accessed manually using:
   - `shell:RecycleBinFolder`
 
-### Troubleshooting Group Policy Results Wizard
-- Attempted to run Group Policy Results Wizard for `Desktop2`
-- Encountered RPC Server error
-- Verified network connectivity using:
+### Troubleshooting – Group Policy Results Wizard
+- Attempted to run the Group Policy Results Wizard for `Desktop2`.
+- Encountered an RPC Server error.
+- Tested network connectivity using:
   - `ping 10.1.10.4`
-- Checked required services on `Desktop2`:
+- Checked the following services on `Desktop2`:
   - Remote Procedure Call (RPC)
   - RPC Endpoint Mapper
-- Confirmed services were running and set to Automatic
-- Resolved issue by temporarily disabling Private Firewall on `Desktop2` to identify the cause
-- Re-enabled firewall after testing
+- Confirmed both services were running and set to `Automatic`.
+- Temporarily disabled the Private Firewall to identify whether it was blocking the connection.
+- Confirmed the firewall was causing the issue and re-enabled it after testing.
 
 ### RSOP / Group Policy Verification
-- Used RSOP (Resultant Set of Policy) logging through Active Directory user tools
-- Verified applied policies and confirmed Task Manager restrictions
+- Used RSOP (Resultant Set of Policy) to review applied Group Policy settings.
+- Verified that the expected policies were being applied to `patty`.
 
 ## PDQ Deploy
 
 ### Environment Preparation
-- Installed VirtualBox Guest Additions and restarted virtual machines
-- Created shared folder `andervss_lab` and enabled Auto-mount
-- Downloaded PDQ Deploy (Free Edition) and stored installer in shared folder
-- Changed network adapter to Bridged Adapter
-- Reverted IP and DNS settings to obtain addresses automatically (DHCP)
+- Installed VirtualBox Guest Additions and restarted the virtual machines.
+- Created a shared folder `andervss_lab` and enabled Auto-mount.
+- Downloaded PDQ Deploy (Free Edition) and stored the installer in the shared folder.
+- Changed the network adapter to Bridged Adapter to provide internet access.
+- Reverted IP and DNS settings to obtain addresses automatically using DHCP.
 - Verified internet connectivity using:
   - `ping 8.8.8.8`
-- Confirmed web browser access
+- Confirmed web browser access.
 
 ### Installing and Testing PDQ Deploy
-- Installed PDQ Deploy (Free Edition) on `Server2022`
-- Created deployment package using PDFsam Basic
-- Performed one-time deployment targeting `Server2022`
-- Verified successful deployment by confirming PDFsam was installed and accessible
+- Installed PDQ Deploy (Free Edition) on `Server2022`.
+- Created a deployment package using PDFsam Basic.
+- Performed a test deployment targeting `Server2022`.
+- Verified successful deployment by confirming PDFsam Basic was installed and accessible.
 
 ### PDQ Inventory
-- Downloaded PDQ Inventory and stored installer in shared folder `andervss_lab`
-- Installed PDQ Inventory on `Server2022`
-- Added `Desktop2` to inventory and verified successful communication
-- Accessed administrative share:
+- Downloaded and installed PDQ Inventory on `Server2022`.
+- Added `Desktop2` to the inventory and verified successful communication.
+- Accessed the administrative share:
   - `\\Desktop2\c$`
-- Tested remote file management by creating and moving files to user desktop locations
-- Tested remote reboot functionality on `Desktop2`
-- Verified Remote Desktop connectivity
-- Generated PDF report of installed applications on `Desktop2`
+- Tested remote file management by creating and moving files on the user's desktop.
+- Tested remote reboot functionality on `Desktop2`.
+- Verified Remote Desktop connectivity.
+- Generated a PDF report showing installed applications on `Desktop2`.
 
-### PDQ Deploy Integration
-- Opened PDQ Deploy through PDQ inventory and targeted `Desktop2`
-- Successfully deployed PDFsam Basic remotely
-- Verified software installation following deployment
+### Remote Software Deployment
+- Opened PDQ Deploy through PDQ Inventory and targeted `Desktop2`.
+- Successfully deployed PDFsam Basic remotely.
+- Verified that PDFsam Basic was installed successfully on `Desktop2`.
+
+## Printer Management
+- Added **Print Management** through Server Manager.
+- Added **Microsoft Publisher Color Printer** for testing and published it in Active Directory.
+- Configured the printer to be available to the **HR** group.
+- Logged into `Desktop2` as `ANDERVSS\patty` and attempted to find and add the shared printer.
+- **Issue:** Error **#740 – Operation could not be completed. Requested operation requires elevation.**
+- **Cause:** Installing the printer required administrator privileges.
+- **Resolution:** Logged into `Desktop2` using the `ANDERVSS\Administrator` account and installed the printer successfully.
+- Logged back into `ANDERVSS\patty` and successfully connected to the installed printer.
