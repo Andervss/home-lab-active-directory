@@ -256,3 +256,23 @@ The lab is used to practise:
 - **Cause:** Installing the printer required administrator privileges.
 - **Resolution:** Logged into `Desktop2` using the `ANDERVSS\Administrator` account and installed the printer successfully.
 - Logged back into `ANDERVSS\patty` and successfully connected to the installed printer.
+
+## IT Service Desk – Jira Service Management
+
+Used Jira Service Management alongside the Active Directory lab to practise basic IT service desk workflows.
+
+### Service Desk Workflow
+- Created and managed incidents and service requests.
+- Assigned tickets and set priorities and due dates.
+- Used subtasks to break down requests.
+- Recorded investigation and troubleshooting steps through ticket comments.
+- Tested fixes before resolving tickets.
+- Practised handling both technical incidents and straightforward service requests.
+
+### Example Tickets
+- User account locked out
+- Password reset request
+- Shared printer installation – Error #740
+- User unable to access HR shared folder
+- Software installation request
+- Hardware replacement request
