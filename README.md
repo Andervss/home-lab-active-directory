@@ -169,6 +169,12 @@ The lab is used to practise:
 - Tested chat functionality and remote control.
 - Verified remote control by interacting with `Desktop2` and editing text remotely.
 
+### Zoho Assist
+- Tested Zoho Assist as a third-party remote support tool between the main PC and `Desktop2`.
+- Connected remotely to `Desktop2` while logged in as user `patty`.
+- Tested remote desktop functionality and interacted with the user's Windows session.
+- Explored the available technician-side tools and sidebar features.
+
 ## Group Policy Management (GPO)
 
 ### Creating and Applying Group Policy
